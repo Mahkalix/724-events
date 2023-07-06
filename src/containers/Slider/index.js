@@ -6,27 +6,32 @@ import "./style.scss";
 
 const Slider = () => {
   const { data } = useData();
-  const [index, setIndex] = useState(0);
-  const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
-  );
-  const nextCard = () => {
-    setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
-      5000
-    );
-  };
+  const [activeIndex, setActiveIndex] = useState(0);
+
   useEffect(() => {
-    nextCard();
-  });
+    if (data && data.focus && data.focus.length > 0) {
+      const interval = setInterval(() => {
+        setActiveIndex((prevIndex) =>
+          prevIndex === data.focus.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 5000);
+
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [data]);
+
+  if (!data || !data.focus || data.focus.length === 0) {
+    return null; // ou retourner un message indiquant que les données sont absentes
+  }
   return (
     <div className="SlideCardList">
-      {byDateDesc?.map((event, idx) => (
-        <>
+      {data?.focus?.map((event, idx) => (
+        <div key={`${event.title}-${idx}`}>
           <div
-            key={event.title}
             className={`SlideCard SlideCard--${
-              index === idx ? "display" : "hide"
+              activeIndex === idx ? "display" : "hide"
             }`}
           >
             <img src={event.cover} alt="forum" />
@@ -40,9 +45,9 @@ const Slider = () => {
           </div>
           <div className="SlideCard__paginationContainer">
             <div className="SlideCard__pagination">
-              {byDateDesc.map((_, radioIdx) => (
+              {data?.focus?.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  key={`dot-${radioIdx}`}
                   type="radio"
                   name="radio-button"
                   checked={idx === radioIdx}
@@ -50,7 +55,7 @@ const Slider = () => {
               ))}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
