@@ -38,8 +38,10 @@ EventCard.propTypes = {
 };
 
 EventCard.defaultProps = {
+  imageSrc: "/images/diego-ph-fIq0tET6llw-unsplash.jpg",
   imageAlt: "image",
   small: false,
+  title: "Ajoute un titre",
 };
 
 export default EventCard;
