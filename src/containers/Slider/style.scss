@@ -3,7 +3,7 @@
 .SlideCardList {
   position: relative;
   width: 100%;
-  max-width: 1440px;
+
   height: 586px;
   .SlideCard {
     width: 100%;
@@ -11,9 +11,14 @@
     top: 0;
     position: absolute;
     transition: opacity 1s;
+    img{
+      width: 100%;
+      object-fit: cover;
+    }
     &--hide {
       opacity: 0;
     }
+   
     &--display {
       animation: slide 1s forwards;
     }
@@ -22,6 +27,7 @@
       left: 0;
       bottom: 100px;
       display: flex;
+      flex-direction: row;
       justify-content: center;
       width: 100%;
     }
@@ -32,12 +38,31 @@
       display: flex;
       justify-content: center;
       width: 100%;
+    
       input[type="radio"] {
         width: 16px;
         height: 16px;
         min-width: 0;
-        color: $primary;
+        appearance: none;
+        border: white 1px solid;
+        border-radius: 50%;
+        margin: 0 5px;
+        padding: 0;
+  
+        &:before {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: #ffffff;
+        }
+  
+        &:checked:before {
+          background-color: $primary;
+        }
       }
+     
     }
     &__description {
       left: 0;

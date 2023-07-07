@@ -23,11 +23,18 @@ const Slider = () => {
   }, [data]);
 
   if (!data || !data.focus || data.focus.length === 0) {
-    return null; // ou retourner un message indiquant que les données sont absentes
+    return null;
   }
+
+  const handleDotClick = (index) => {
+    if (activeIndex !== index) {
+      setActiveIndex(index);
+    }
+  };
+
   return (
     <div className="SlideCardList">
-      {data?.focus?.map((event, idx) => (
+      {data.focus.map((event, idx) => (
         <div key={`${event.title}-${idx}`}>
           <div
             className={`SlideCard SlideCard--${
@@ -45,12 +52,13 @@ const Slider = () => {
           </div>
           <div className="SlideCard__paginationContainer">
             <div className="SlideCard__pagination">
-              {data?.focus?.map((_, radioIdx) => (
+              {data.focus.map((_, radioIdx) => (
                 <input
                   key={`dot-${radioIdx}`}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+                  checked={activeIndex === radioIdx}
+                  onChange={() => handleDotClick(radioIdx)}
                 />
               ))}
             </div>
