@@ -60,7 +60,13 @@
   
         &:checked:before {
           background-color: $primary;
+          
         }
+
+       
+      }
+      .test{
+        background-color: $primary;
       }
      
     }

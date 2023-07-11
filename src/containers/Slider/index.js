@@ -20,16 +20,16 @@ const Slider = () => {
         clearInterval(interval);
       };
     }
-  }, [data]);
+  }, [data, activeIndex]);
 
   if (!data || !data.focus || data.focus.length === 0) {
     return null;
   }
 
-  const handleDotClick = (index) => {
-    if (activeIndex !== index) {
-      setActiveIndex(index);
-    }
+  const handleDotClick = (event) => {
+    const index = parseInt(event.target.value);
+
+    setActiveIndex(index);
   };
 
   return (
@@ -56,9 +56,11 @@ const Slider = () => {
                 <input
                   key={`dot-${radioIdx}`}
                   type="radio"
-                  name="radio-button"
+                  name="dots"
+                  value={radioIdx}
+                  className={activeIndex === radioIdx ? "test" : ""}
                   checked={activeIndex === radioIdx}
-                  onChange={() => handleDotClick(radioIdx)}
+                  onChange={handleDotClick}
                 />
               ))}
             </div>
