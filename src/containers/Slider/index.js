@@ -28,7 +28,6 @@ const Slider = () => {
 
   const handleDotClick = (event) => {
     const index = parseInt(event.target.value);
-
     setActiveIndex(index);
   };
 
@@ -55,7 +54,7 @@ const Slider = () => {
               {data.focus.map((_, radioIdx) => (
                 <input
                   key={`dot-${radioIdx}`}
-                  type="radio"
+                  type="checkbox"
                   name="dots"
                   value={radioIdx}
                   className={activeIndex === radioIdx ? "test" : ""}
