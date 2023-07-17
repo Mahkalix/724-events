@@ -12,7 +12,7 @@ const Slider = () => {
     if (data && data.focus && data.focus.length > 0) {
       const interval = setInterval(() => {
         setActiveIndex((prevIndex) =>
-          prevIndex === data.focus.length - 1 ? 0 : prevIndex + 1
+          prevIndex === 0 ? data.focus.length - 1 : prevIndex - 1
         );
       }, 5000);
 
@@ -31,9 +31,11 @@ const Slider = () => {
     setActiveIndex(index);
   };
 
+  const reversedFocus = [...data.focus].reverse(); // Inverser l'ordre des éléments
+
   return (
     <div className="SlideCardList">
-      {data.focus.map((event, idx) => (
+      {reversedFocus.map((event, idx) => (
         <div key={`${event.title}-${idx}`}>
           <div
             className={`SlideCard SlideCard--${
@@ -51,7 +53,7 @@ const Slider = () => {
           </div>
           <div className="SlideCard__paginationContainer">
             <div className="SlideCard__pagination">
-              {data.focus.map((_, radioIdx) => (
+              {reversedFocus.map((_, radioIdx) => (
                 <input
                   key={`dot-${radioIdx}`}
                   type="checkbox"
