@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/70fb6d19-3c17-4af6-a58b-79e157e29ef2/deploy-status)](https://app.netlify.com/sites/dimensionmusic/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f38c8bfe-0739-48ed-bd27-7ec2c64c4d53/deploy-status)](https://app.netlify.com/sites/77-events/deploys)
 # 724 Events
 
 ## Description
