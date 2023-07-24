@@ -13,10 +13,12 @@ const EventCard = ({
   ...props
 }) => {
   const { data } = useData();
+  console.log(data?.events?.[data.events.length - 1]?.cover);
 
-  const defaultImageSrc = data?.events?.[17]?.cover || "";
-  const defaultImageAlt = data?.events?.[17]?.description || "";
-  const defaultTitle = data?.events?.[17]?.title || "";
+  const defaultImageSrc = data?.events?.[data.events.length - 1]?.cover || "";
+  const defaultImageAlt =
+    data?.events?.[data.events.length - 1]?.description || "";
+  const defaultTitle = data?.events?.[data.events.length - 1]?.title || "";
 
   return (
     <div
